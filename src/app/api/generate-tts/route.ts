@@ -42,12 +42,35 @@ export async function POST(request: NextRequest) {
     }
 
     const filePath = path.join(tempDir, filename)
+    const fallbackVoice = 'en_female_ht_f08_wonderful_world'
 
-    // Generate the audio file
-    await createAudioFromText(text, filePath, voice)
+    let audioFilePath: string
+    let usedVoice = voice
+
+    try {
+      // Try generating the audio file with the requested voice
+      await createAudioFromText(text, filePath, voice)
+      audioFilePath = `${filePath}.mp3`
+    } catch (error) {
+      // Check if this is an invalid speaker error
+      if (error instanceof Error && error.message.includes('status_code: 4')) {
+        // Try with fallback voice
+        try {
+          const fallbackFilePath = path.join(tempDir, `${filename}-fallback`)
+          await createAudioFromText(text, fallbackFilePath, fallbackVoice)
+          audioFilePath = `${fallbackFilePath}.mp3`
+          usedVoice = fallbackVoice
+        } catch (fallbackError) {
+          // If fallback also fails, return the exact error message from backend
+          throw fallbackError
+        }
+      } else {
+        // For other errors, rethrow as is
+        throw error
+      }
+    }
 
     // Read the generated file
-    const audioFilePath = `${filePath}.mp3`
     const audioBuffer = await fs.readFile(audioFilePath)
 
     // Clean up the temporary file
@@ -62,7 +85,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Content-Disposition': `attachment; filename="tiktok-tts-${voice}.mp3"`,
+        'Content-Disposition': `attachment; filename="tiktok-tts-${usedVoice}.mp3"`,
       },
     })
 

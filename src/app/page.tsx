@@ -83,6 +83,13 @@ export default function Home() {
             >
               <option value="en_male_wukong">Wukong (Male)</option>
               <option value="en_male_pigsy">Pigsy (Male)</option>
+              <option value="en_female_ht_f08_wonderful_world">Wonderful World (Female)</option>
+              <option value="en_us_001">US English 1 (Female)</option>
+              <option value="en_us_002">US English 2 (Male)</option>
+              <option value="en_us_006">US English 6 (Male)</option>
+              <option value="en_us_007">US English 7 (Male)</option>
+              <option value="en_us_009">US English 9 (Male)</option>
+              <option value="en_us_010">US English 10 (Male)</option>
             </select>
           </div>
 
