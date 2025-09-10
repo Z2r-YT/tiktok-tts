@@ -59,6 +59,8 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "jest": "^29.5.0"
+    "express": "^5.1.0",
+    "jest": "^29.5.0",
+    "supertest": "^7.1.4"
   }
 }
