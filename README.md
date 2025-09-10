@@ -11,11 +11,13 @@ A modern web application for generating text-to-speech audio files using TikTok'
 Visit the live web application: [Deploy your own to Vercel](#deployment-on-vercel)
 
 ### Features
-- **Voice Selection**: Choose between 'Wukong' and 'Pigsy' male voices
+- **Voice Selection**: Choose between 'Wukong' and 'Pigsy' male voices (`en_male_wukong` and `en_male_pigsy`)
 - **Text Input**: Enter any text to be converted to speech
 - **Audio Playback**: Listen to generated audio directly in the browser
 - **Download**: Save the generated MP3 file to your device
 - **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
+
+> **Note**: If the specified voice codes (`en_male_wukong`, `en_male_pigsy`) are not recognized by TikTok's API, the system will use fallback voices or return an error message. You can modify the voice codes in `src/app/page.tsx` to use [any supported voice from the list below](#speaker-codes).
 
 ### Deployment on Vercel
 
@@ -77,6 +79,15 @@ npm run lint
 # Run tests
 npm test
 ```
+
+### Troubleshooting
+
+**Common Issues:**
+
+1. **"TikTok session ID not configured"**: Make sure you've set the `TIKTOK_SESSION_ID` environment variable
+2. **"Invalid speaker"**: The voice codes `en_male_wukong` or `en_male_pigsy` might not be valid. Check the [Speaker Codes](#speaker-codes) section below for valid alternatives
+3. **"Your TikTok session id might be invalid or expired"**: Get a fresh session ID from TikTok web cookies
+4. **Audio generation fails**: Ensure your TikTok session is active and the text isn't too long (under 300 characters recommended)
 
 ---
 
