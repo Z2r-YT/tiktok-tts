@@ -1,9 +1,88 @@
 # tiktok-tts 
 
-This package provides a simple way to generate text-to-speech audio files from TikTok's text-to-speech (TTS) API in Node.js.
+A modern web application for generating text-to-speech audio files using TikTok's TTS API. Available both as an npm package and as a web application deployable on Vercel.
 
 ![example workflow](https://github.com/Steve0929/tiktok-tts/actions/workflows/publish_workflow.yml/badge.svg)
 ![downloads](https://img.shields.io/npm/dm/tiktok-tts.svg?color=5f63f1)
+
+## 🌐 Web Application
+
+### Live Demo
+Visit the live web application: [Deploy your own to Vercel](#deployment-on-vercel)
+
+### Features
+- **Voice Selection**: Choose between 'Wukong' and 'Pigsy' male voices
+- **Text Input**: Enter any text to be converted to speech
+- **Audio Playback**: Listen to generated audio directly in the browser
+- **Download**: Save the generated MP3 file to your device
+- **Modern UI**: Clean, responsive interface built with Next.js and Tailwind CSS
+
+### Deployment on Vercel
+
+1. **Fork this repository** to your GitHub account
+
+2. **Get your TikTok Session ID**:
+   - Install [Cookie Editor extension](https://cookie-editor.cgagnier.ca) for your browser
+   - Log in to [TikTok Web](https://tiktok.com)
+   - While on TikTok web, open the extension and look for `sessionid`
+   - Copy the `sessionid` value (should be an alphanumeric value)
+
+3. **Deploy to Vercel**:
+   - Visit [Vercel](https://vercel.com) and sign in with your GitHub account
+   - Click "New Project" and select your forked repository
+   - Add the environment variable:
+     - **Name**: `TIKTOK_SESSION_ID`
+     - **Value**: Your copied TikTok session ID
+   - Click "Deploy"
+
+4. **Your app will be live** at the provided Vercel URL!
+
+### Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/tiktok-tts.git
+cd tiktok-tts
+
+# Install dependencies
+npm install
+
+# Create environment file
+cp .env.example .env.local
+
+# Add your TikTok session ID to .env.local
+# TIKTOK_SESSION_ID=your_session_id_here
+
+# Run development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+### Build Commands
+
+```bash
+# Development
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Run linting
+npm run lint
+
+# Run tests
+npm test
+```
+
+---
+
+## 📦 NPM Package Usage
+
+This package also provides a simple Node.js API for generating TTS audio files programmatically.
 
 
 ## Installation
